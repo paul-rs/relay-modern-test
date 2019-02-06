@@ -1,0 +1,55 @@
+# source: https://countries.trevorblades.com
+# timestamp: Wed Feb 06 2019 21:13:11 GMT+0800 (Singapore Standard Time)
+
+directive @cacheControl(maxAge: Int, scope: CacheControlScope) on FIELD_DEFINITION | OBJECT | INTERFACE
+
+# workaround for annoying bug in relay-compiler
+# https://github.com/facebook/relay/issues/1880
+type Hack {
+  id: ID
+}
+
+enum CacheControlScope {
+  PUBLIC
+  PRIVATE
+}
+
+type Continent {
+  code: String
+  name: String
+  countries: [Country]
+}
+
+type Country {
+  code: String
+  name: String
+  native: String
+  phone: String
+  continent: Continent
+  currency: String
+  languages: [Language]
+  emoji: String
+  emojiU: String
+}
+
+type Language {
+  code: String
+  name: String
+  native: String
+  rtl: Int
+}
+
+type Query {
+  continents: [Continent]
+  continent(code: String): Continent
+  countries: [Country]
+  country(code: String): Country
+  languages: [Language]
+  language(code: String): Language
+}
+
+"""
+The `Upload` scalar type represents a file upload promise that resolves an
+object containing `stream`, `filename`, `mimetype` and `encoding`.
+"""
+scalar Upload
