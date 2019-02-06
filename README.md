@@ -6,3 +6,4 @@
 ```bash
 ./configure --enable-lenient
 ```
+4. [Watchman limit](https://github.com/facebook/watchman/issues/163)
